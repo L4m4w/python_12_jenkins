@@ -4,9 +4,9 @@ import time
 from selene import have, be, browser
 # from selene.support.shared import browser
 
-from ..mixins.application import app
-from ..mixins.User import User, Gender
-from ..mixins.registratio_form_page import RegistrationFormPage
+from mixins.application import app
+from mixins.User import User, Gender
+from mixins.registratio_form_page import RegistrationFormPage
 
 
 PICTURE_NAME = "img-1.png"
