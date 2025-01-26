@@ -2,8 +2,7 @@ import os
 from datetime import datetime
 from time import daylight
 
-from selene import have, browser, command
-# from selene.support.shared import browser
+from selene import have, command
 from selenium.webdriver.common.keys import Keys
 from pathlib import Path
 import allure
@@ -20,13 +19,16 @@ def path(file_name):
 
 class RegistrationFormPage:
 
+    def __init__(self, browser_manager):
+        self.browser = browser_manager
+
 
     def slide_to_submit_button(self):
-        browser.scroll_to_element('#submit')
+        self.browser.scroll_to_element('#submit')
 
     @allure.step('Открываем главную страницу')
     def open(self):
-        browser.open('https://demoqa.com/automation-practice-form/')
+        self.browser.open('https://demoqa.com/automation-practice-form/')
 
     @allure.step('Заполняем имя')
     def fill_first_name(self, value: str):
@@ -35,46 +37,46 @@ class RegistrationFormPage:
         :param value:
         :return:
         """
-        browser.element('#firstName').type(value)
+        self.browser.element('#firstName').type(value)
 
     @allure.step('Заполняем фамилию')
     def fill_last_name(self, value: str):
-        browser.element('#lastName').type(value)
+        self.browser.element('#lastName').type(value)
 
     @allure.step('Заполняем поле email')
     def fill_email(self, value: str):
-        browser.element('#userEmail').type(value)
+        self.browser.element('#userEmail').type(value)
 
     @allure.step('Заполняем поле пола')
     def choose_gender(self, value: str):
-        browser.all('[name=gender]').element_by(have.value(value)).element('..').click()
+        self.browser.all('[name=gender]').element_by(have.value(value)).element('..').click()
 
     @allure.step('Заполняем поле номера телефона')
     def fill_phone_number(self, value: str):
-        browser.element('#userNumber').type(value)
+        self.browser.element('#userNumber').type(value)
 
     @allure.step('Заполняем поле дата рождения')
     def fill_date_of_birth(self, year:str, month:str, day:str):
-        browser.element('#dateOfBirthInput').click()
-        browser.element('.react-datepicker__month-select').type(month)
-        browser.element('.react-datepicker__year-select').type(year)
-        browser.element(f'.react-datepicker__day--0{day}:not(.react-datepicker__day--outside-month)').click()
+        self.browser.element('#dateOfBirthInput').click()
+        self.browser.element('.react-datepicker__month-select').type(month)
+        self.browser.element('.react-datepicker__year-select').type(year)
+        self.browser.element(f'.react-datepicker__day--0{day}:not(.react-datepicker__day--outside-month)').click()
 
     @allure.step('Заполняем поле предмета')
     def fill_subject(self, value):
-        browser.element('#subjectsInput').send_keys(value).press_enter()
+        self.browser.element('#subjectsInput').send_keys(value).press_enter()
 
     @allure.step('Заполняем поле хобби')
     def choose_hoobie(self, value):
-        browser.all('.custom-checkbox').element_by(have.exact_text(value)).click()
+        self.browser.all('.custom-checkbox').element_by(have.exact_text(value)).click()
 
     @allure.step('Прикладываем картинку')
     def upload_picture(self, value):
-        # browser.element('#uploadPicture').set_value(path(value))
+        # self.browser.element('#uploadPicture').set_value(path(value))
         # goifa = 'C:\Users\larke\PycharmProjects\guru_in_py\python_10_9\resources\img-1.png'
         path = self.get_file_path_from_neighbor_folder('img-1.png')
         # absolute_path = os.path.abspath(path)
-        browser.element('#uploadPicture').send_keys(path)
+        self.browser.element('#uploadPicture').send_keys(path)
 
     def get_file_path_from_neighbor_folder(self, file_name: str):
         # Получаем путь к текущей директории
@@ -90,21 +92,21 @@ class RegistrationFormPage:
 
     @allure.step('Заполняем поле адреса')
     def fill_current_address(self, value):
-        browser.element('#currentAddress').type(value)
+        self.browser.element('#currentAddress').type(value)
 
     @allure.step('Заполняем поле Штата')
     def select_state(self, value):
-        browser.element('#react-select-3-input').send_keys(value).press_tab()
+        self.browser.element('#react-select-3-input').send_keys(value).press_tab()
 
     @allure.step('Заполняем поле города')
     def select_city(self, value):
-        browser.element('#react-select-4-input').send_keys(value).press_tab()
+        self.browser.element('#react-select-4-input').send_keys(value).press_tab()
 
     @allure.step('Завершаем заполениние формы')
     def submit_registration_page(self):
         # self.slide_to_submit_button()
-        browser.element('#submit').send_keys(Keys.PAGE_DOWN)
-        browser.element('#submit').click()
+        self.browser.element('#submit').send_keys(Keys.PAGE_DOWN)
+        self.browser.element('#submit').click()
 
     @staticmethod
     def current_date():
@@ -139,7 +141,7 @@ class RegistrationFormPage:
         full_name = ' '.join(filter(None, [first_name, last_name]))
         state_city = ' '.join(filter(None, [state, city]))
 
-        browser.element('.table').all('td').even.should(
+        self.browser.element('.table').all('td').even.should(
             have.exact_texts(
                 full_name,
                 mail,

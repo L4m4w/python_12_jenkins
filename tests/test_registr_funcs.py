@@ -1,26 +1,22 @@
-import os
-import time
-
-from selene import have, be, browser
-# from selene.support.shared import browser
-
-from mixins.application import app
-from mixins.User import User, Gender
-from mixins.registratio_form_page import RegistrationFormPage
+from ..mixins.application import Application
+# from ..mixins.application import app
+from ..mixins.User import User, Gender
+from ..mixins.registratio_form_page import RegistrationFormPage
+from ..configure.conftest import browser_manager
 
 
 PICTURE_NAME = "img-1.png"
 
-def test_form_fill_app_method():
-    # Application Management
+def test_form_fill_app_method(browser_manager):
     pashu = User(first_name='Abc1', last_name='Abc1', gender=Gender.male.value, mobile_number='1234567890')
-    # print(pashu)
-    app.simple_registration.open()
-    app.register(pashu)
-    app.should_have_registrated(pashu)
+    pap = Application(browser_manager)
+    pap.simple_registration.open()
+    pap.register(pashu)
+    pap.should_have_registrated(pashu)
 
-def test_full_form_fill():
-    registration_page = RegistrationFormPage()
+def test_full_form_fill(browser_manager):
+
+    registration_page = RegistrationFormPage(browser_manager)
 
     # Simple page object
     registration_page.open()
@@ -66,8 +62,9 @@ def test_full_form_fill():
                 'Delhi')
 
 
-def test_requirements_form_fill():
-    registration_page = RegistrationFormPage()
+def test_requirements_form_fill(browser_manager):
+
+    registration_page = RegistrationFormPage(browser_manager)
 
     registration_page.open()
 

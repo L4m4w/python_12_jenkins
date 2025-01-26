@@ -1,17 +1,15 @@
-# from selene import browser
-from selene.support.shared import browser
-
 from .registratio_form_page import RegistrationFormPage
 from .User import User
 
 
 class Application(User):
-    def __init__(self):
-        self.simple_registration = RegistrationFormPage()
+    def __init__(self, browser_manager):
+        self.simple_registration = RegistrationFormPage(browser_manager)
+        self.browser = browser_manager
         # self.user = User()
 
     def open(self):
-        browser.open_url('/')
+        self.browser.open_url('https://demoqa.com/automation-practice-form/')
         return self
 
     def register(self, user):
@@ -30,4 +28,4 @@ class Application(User):
 
 
 
-app = Application()
+# app = Application(browser)
