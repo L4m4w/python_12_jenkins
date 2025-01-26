@@ -12,10 +12,6 @@ def browser_manager():
     browser.config.timeout = 4.0
     browser.config.type_by_js = True
 
-    driver_options = webdriver.ChromeOptions()
-    #driver_options.add_argument('--headless')
-
-    browser.config.driver_options = driver_options
     options = Options()
     selenoid_capabilities = {
         "browserName": "chrome",
