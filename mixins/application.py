@@ -1,8 +1,8 @@
 # from selene import browser
 from selene.support.shared import browser
 
-from registratio_form_page import RegistrationFormPage
-from User import User
+from .registratio_form_page import RegistrationFormPage
+from .User import User
 
 
 class Application(User):
