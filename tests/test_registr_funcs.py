@@ -1,7 +1,7 @@
 from mixins import application
 from mixins import User
 from mixins import registration_form_page
-from ..configure.conftest import browser_manager
+# from configure import conftest
 
 
 PICTURE_NAME = "img-1.png"
