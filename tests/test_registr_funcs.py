@@ -2,7 +2,6 @@ from mixins import application
 from mixins import User
 from mixins import registration_form_page
 
-
 PICTURE_NAME = "img-1.png"
 
 def test_form_fill_app_method(browser_manager):

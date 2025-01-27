@@ -3,10 +3,10 @@ from selene import browser
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selene import Browser, Config
-from .utils import attach
+from configure.utils import attach
 
 
-@pytest.fixture(scope='function')
+@pytest.fixture(scope='function', autouse=True)
 def browser_manager():
     options = Options()
     selenoid_capabilities = {
@@ -36,5 +36,4 @@ def browser_manager():
     attach.add_logs(browser)
     attach.add_html(browser)
     attach.add_video(browser)
-
     browser.quit()
