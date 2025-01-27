@@ -1,22 +1,20 @@
-from configure.conftest import browser_manager
 from mixins import application
 from mixins import User
 from mixins import registration_form_page
-from configure import conftest
 
 
 PICTURE_NAME = "img-1.png"
 
 def test_form_fill_app_method(browser_manager):
     pashu = User.User(first_name='Abc1', last_name='Abc1', gender=User.Gender.male.value, mobile_number='1234567890')
-    pap = application.Application(conftest.browser_manager)
+    pap = application.Application(browser_manager)
     pap.simple_registration.open()
     pap.register(pashu)
     pap.should_have_registrated(pashu)
 
 def test_full_form_fill(browser_manager):
 
-    registration_page = registration_form_page.RegistrationFormPage(conftest.browser_manager)
+    registration_page = registration_form_page.RegistrationFormPage(browser_manager)
 
     # Simple page object
     registration_page.open()
@@ -64,7 +62,7 @@ def test_full_form_fill(browser_manager):
 
 def test_requirements_form_fill(browser_manager):
 
-    registration_page = registration_form_page.RegistrationFormPage(conftest.browser_manager)
+    registration_page = registration_form_page.RegistrationFormPage(browser_manager)
 
     registration_page.open()
 
