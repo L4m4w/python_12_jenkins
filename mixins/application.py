@@ -1,10 +1,11 @@
-from .registration_form_page import RegistrationFormPage
-from .User import User
+from mixins import registration_form_page
+from mixins import User
+# from .User import User
 
 
-class Application(User):
+class Application(User.User):
     def __init__(self, browser_manager):
-        self.simple_registration = RegistrationFormPage(browser_manager)
+        self.simple_registration = registration_form_page.RegistrationFormPage(browser_manager)
         self.browser = browser_manager
         # self.user = User()
 

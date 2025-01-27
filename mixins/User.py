@@ -2,8 +2,7 @@ from dataclasses import dataclass
 from datetime import datetime
 from enum import Enum
 
-from .registration_form_page import RegistrationFormPage
-
+from mixins import registration_form_page
 
 class Gender(Enum):
     male = "Male"
@@ -29,7 +28,7 @@ class User:
     email: str = ''
     gender: Gender = ''
     mobile_number: str = ''
-    birth_date: datetime.date = RegistrationFormPage.current_date()
+    birth_date: datetime.date = registration_form_page.RegistrationFormPage.current_date()
     subject: str = ''
     hobbies: Hobbies = ''
     picture: str = ''
