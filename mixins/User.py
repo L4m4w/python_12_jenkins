@@ -2,7 +2,7 @@ from dataclasses import dataclass
 from datetime import datetime
 from enum import Enum
 
-from .registratio_form_page import RegistrationFormPage
+from registratio_form_page import RegistrationFormPage
 
 
 class Gender(Enum):

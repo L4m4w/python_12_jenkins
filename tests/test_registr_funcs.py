@@ -1,8 +1,7 @@
-from ..mixins.application import Application
-# from ..mixins.application import app
-from ..mixins.User import User, Gender
-from ..mixins.registratio_form_page import RegistrationFormPage
-from ..configure.conftest import browser_manager
+from mixins.application import Application
+from mixins.User import User, Gender
+from mixins.registratio_form_page import RegistrationFormPage
+from configure.conftest import browser_manager
 
 
 PICTURE_NAME = "img-1.png"
