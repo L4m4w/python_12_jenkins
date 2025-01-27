@@ -1,5 +1,5 @@
-from registratio_form_page import RegistrationFormPage
-from User import User
+from .registration_form_page import RegistrationFormPage
+from .User import User
 
 
 class Application(User):
