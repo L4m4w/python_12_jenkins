@@ -103,7 +103,7 @@ class RegistrationFormPage:
         self.browser.element('#react-select-4-input').send_keys(value).press_tab()
 
     @allure.step('Завершаем заполениние формы')
-    def submit_registration_page(self):
+    def submit(self):
         # self.slide_to_submit_button()
         self.browser.element('#submit').send_keys(Keys.PAGE_DOWN)
         self.browser.element('#submit').click()

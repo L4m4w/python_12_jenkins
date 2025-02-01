@@ -19,7 +19,7 @@ class Application(User.User):
         self.simple_registration.fill_last_name(user.last_name)
         self.simple_registration.choose_gender(user.gender)
         self.simple_registration.fill_phone_number(user.mobile_number)
-        self.simple_registration.submit_registration_page()
+        self.simple_registration.submit()
 
     def should_have_registrated(self, user):
         self.simple_registration.should_registrated_form(
