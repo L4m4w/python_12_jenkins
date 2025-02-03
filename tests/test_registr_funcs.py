@@ -61,6 +61,7 @@ def test_requirements_form_fill(browser_manager):
 
     registration_page = registration_form_page.RegistrationFormPage(browser_manager)
 
+
     registration_page.open()
 
     registration_page.fill_first_name('abc')
